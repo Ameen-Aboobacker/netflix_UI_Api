@@ -1,18 +1,21 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix/application/downloads/downloads_bloc.dart';
 import 'package:netflix/core/colors/colors.dart';
 import 'package:netflix/core/constants.dart';
+import 'package:netflix/core/strings.dart';
 import 'package:netflix/presentation/widgets/app_bar_widget.dart';
 
 class ScreenDownloads extends StatelessWidget {
-   ScreenDownloads({Key? key}) : super(key: key);
-final _widgetList=[
-            const _SmartDownloads(),
-            kwidth,
-            Section2(),
-            const Section3()
-          ];
+  ScreenDownloads({Key? key}) : super(key: key);
+  final _widgetList = [
+    const _SmartDownloads(),
+    kwidth,
+    const Section2(),
+    const Section3()
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,23 +26,22 @@ final _widgetList=[
           ),
         ),
         body: ListView.separated(
-          padding: const EdgeInsets.all(10),
-          itemBuilder: (ctx,index)=>_widgetList[index], 
-          separatorBuilder: (ctx,index)=>const SizedBox(height: 15,),
-          itemCount: _widgetList.length)
-        );
+            padding: const EdgeInsets.all(10),
+            itemBuilder: (ctx, index) => _widgetList[index],
+            separatorBuilder: (ctx, index) => const SizedBox(
+                  height: 15,
+                ),
+            itemCount: _widgetList.length));
   }
 }
 
 class Section2 extends StatelessWidget {
-  Section2({Key? key}) : super(key: key);
-  final List imagelist = [
-    "https://www.themoviedb.org/t/p/w220_and_h330_face/qi9r5xBgcc9KTxlOLjssEbDgO0J.jpg",
-    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/sv1xJUazXeYqALzczSZ3O6nkH75.jpg",
-    "https://www.themoviedb.org/t/p/w220_and_h330_face/dm06L9pxDOL9jNSK4Cb6y139rrG.jpg",
-  ];
+  const Section2({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+   BlocProvider.of<DownloadsBloc>(context)
+          .add(const DownloadsEvent.getDownloadsImage());
     final Size size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -61,40 +63,52 @@ class Section2 extends StatelessWidget {
             fontSize: 16,
           ),
         ),
-        SizedBox(
-            width: size.width,
-            height: size.width,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                CircleAvatar(
-                  backgroundColor: Colors.grey.withOpacity(0.6),
-                  radius: size.width * 0.37,
-                ),
-                DownloadsImageWidget(
-                  size: Size(size.width * 0.35, size.width * 0.55,),
-                  imagelist: imagelist[0],
-                  margin: const EdgeInsets.only(left: 170,top:30, ),
-                  angle: 20,
-                ),
-                DownloadsImageWidget(
-                    size: Size(size.width * 0.35, size.width * 0.55),
-                    imagelist: imagelist[1],
-                    margin: const EdgeInsets.only(
-                      right: 170,
-                      top:30,
+        BlocBuilder<DownloadsBloc, DownloadsState>(
+          builder: (context, state) {
+            return SizedBox(
+                width: size.width,
+                height: size.width,
+                child: state.isLoading? const Center(child: CircularProgressIndicator()):   Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.grey.withOpacity(0.6),
+                      radius: size.width * 0.37,
                     ),
-                    angle: -20),
-                DownloadsImageWidget(
-                  size: Size(size.width * 0.4, size.width * 0.6),
-                  imagelist: imagelist[2],
-                  margin: const EdgeInsets.only(
-                    bottom: 10,top:20,
-                  ),
-                  radius: 10,
-                ),
-              ],
-            )),
+                    DownloadsImageWidget(
+                      size: Size(
+                        size.width * 0.35,
+                        size.width * 0.55,
+                      ),
+                      
+                      imagelist:'$kImageAppendUrl${state.downloads[0].posterPath}' ,
+                      margin: const EdgeInsets.only(
+                        left: 170,
+                        top: 30,
+                      ),
+                      angle: 20,
+                    ),
+                    DownloadsImageWidget(
+                        size: Size(size.width * 0.35, size.width * 0.55),
+                       imagelist:'$kImageAppendUrl${state.downloads[1].posterPath}' ,
+                        margin: const EdgeInsets.only(
+                          right: 170,
+                          top: 30,
+                        ),
+                        angle: -20),
+                    DownloadsImageWidget(
+                      size: Size(size.width * 0.4, size.width * 0.6),
+                      imagelist:'$kImageAppendUrl${state.downloads[2].posterPath}' ,
+                      margin: const EdgeInsets.only(
+                        bottom: 10,
+                        top: 20,
+                      ),
+                      radius: 10,
+                    ),
+                  ],
+                ));
+          },
+        ),
       ],
     );
   }
@@ -108,7 +122,7 @@ class Section3 extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          width:double.infinity,
+          width: double.infinity,
           child: MaterialButton(
             color: kButtonColorblue,
             onPressed: () {},
@@ -186,12 +200,11 @@ class DownloadsImageWidget extends StatelessWidget {
       child: Transform.rotate(
         angle: angle * pi / 180,
         child: ClipRRect(
-           borderRadius: BorderRadius.circular(radius),
+          borderRadius: BorderRadius.circular(radius),
           child: Container(
             width: size.width,
             height: size.height,
             decoration: BoxDecoration(
-               
                 image: DecorationImage(
                     fit: BoxFit.cover, image: NetworkImage(imagelist))),
           ),

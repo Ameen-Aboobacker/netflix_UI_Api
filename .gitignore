@@ -44,3 +44,5 @@ app.*.map.json
 /android/app/release
 
 lib/infrastructure/api_key.dart
+lib/application/downloads/downloads_event.dart
+
