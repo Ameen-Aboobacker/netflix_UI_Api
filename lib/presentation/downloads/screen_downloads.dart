@@ -40,8 +40,8 @@ class Section2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   BlocProvider.of<DownloadsBloc>(context)
-          .add(const DownloadsEvent.getDownloadsImage());
+    BlocProvider.of<DownloadsBloc>(context)
+        .add(const DownloadsEvent.getDownloadsImage());
     final Size size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -68,45 +68,49 @@ class Section2 extends StatelessWidget {
             return SizedBox(
                 width: size.width,
                 height: size.width,
-                child: state.isLoading? const Center(child: CircularProgressIndicator()):   Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    CircleAvatar(
-                      backgroundColor: Colors.grey.withOpacity(0.6),
-                      radius: size.width * 0.37,
-                    ),
-                    DownloadsImageWidget(
-                      size: Size(
-                        size.width * 0.35,
-                        size.width * 0.55,
-                      ),
-                      
-                      imagelist:'$kImageAppendUrl${state.downloads[0].posterPath}' ,
-                      margin: const EdgeInsets.only(
-                        left: 170,
-                        top: 30,
-                      ),
-                      angle: 20,
-                    ),
-                    DownloadsImageWidget(
-                        size: Size(size.width * 0.35, size.width * 0.55),
-                       imagelist:'$kImageAppendUrl${state.downloads[1].posterPath}' ,
-                        margin: const EdgeInsets.only(
-                          right: 170,
-                          top: 30,
-                        ),
-                        angle: -20),
-                    DownloadsImageWidget(
-                      size: Size(size.width * 0.4, size.width * 0.6),
-                      imagelist:'$kImageAppendUrl${state.downloads[2].posterPath}' ,
-                      margin: const EdgeInsets.only(
-                        bottom: 10,
-                        top: 20,
-                      ),
-                      radius: 10,
-                    ),
-                  ],
-                ));
+                child: state.isLoading
+                    ? const Center(child: CircularProgressIndicator())
+                    : Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Colors.grey.withOpacity(0.6),
+                            radius: size.width * 0.37,
+                          ),
+                          DownloadsImageWidget(
+                            size: Size(
+                              size.width * 0.35,
+                              size.width * 0.55,
+                            ),
+                            imagelist:
+                                '$kImageAppendUrl${state.downloads[1].posterPath}',
+                            margin: const EdgeInsets.only(
+                              left: 170,
+                              top: 30,
+                            ),
+                            angle: 20,
+                          ),
+                          DownloadsImageWidget(
+                              size: Size(size.width * 0.35, size.width * 0.55),
+                              imagelist:
+                                  '$kImageAppendUrl${state.downloads[2].posterPath}',
+                              margin: const EdgeInsets.only(
+                                right: 170,
+                                top: 30,
+                              ),
+                              angle: -20),
+                          DownloadsImageWidget(
+                            size: Size(size.width * 0.4, size.width * 0.6),
+                            imagelist:
+                                '$kImageAppendUrl${state.downloads[0].posterPath}',
+                            margin: const EdgeInsets.only(
+                              bottom: 10,
+                              top: 20,
+                            ),
+                            radius: 10,
+                          ),
+                        ],
+                      ));
           },
         ),
       ],

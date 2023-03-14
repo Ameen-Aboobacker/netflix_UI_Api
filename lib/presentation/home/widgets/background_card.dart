@@ -28,13 +28,15 @@ class BackgroundCard extends StatelessWidget {
               children: [
                 const CustomButtonWidget(icon: Icons.add, title: 'My List'),
                 _playButton(),
-                 const CustomButtonWidget(icon: Icons.info_outline, title: 'Info'),
+                const CustomButtonWidget(
+                    icon: Icons.info_outline, title: 'Info'),
               ],
             ))
       ],
     );
   }
-   TextButton _playButton() {
+
+  TextButton _playButton() {
     return TextButton.icon(
         style: const ButtonStyle(
             backgroundColor: MaterialStatePropertyAll(kwhite)),

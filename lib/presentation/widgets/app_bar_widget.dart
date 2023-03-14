@@ -10,11 +10,14 @@ class AppBarWidget extends StatelessWidget {
     return Row(
       children: [
         kwidth,
-         Text(title,style: const TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
+        Text(
+          title,
+          style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+        ),
         const Spacer(),
         const Icon(
           Icons.cast,
-          color:kwhite,
+          color: kwhite,
         ),
         kwidth,
         Container(height: 20, width: 20, color: Colors.blue),

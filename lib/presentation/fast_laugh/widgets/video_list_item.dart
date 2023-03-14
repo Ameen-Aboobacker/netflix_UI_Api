@@ -1,11 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/core/colors/colors.dart';
+import 'package:netflix/core/strings.dart';
+import 'package:netflix/domain/downloads/models/downloads.dart';
+
+class VideoListItemInheritedWidget extends InheritedWidget {
+  final Widget widget;
+  final Downloads movieData;
+
+  const VideoListItemInheritedWidget({
+    Key? key,
+    required this.widget,
+    required this.movieData,
+  }) : super(key:key,child: widget);
+  @override
+  bool updateShouldNotify(covariant VideoListItemInheritedWidget oldWidget) {
+    return oldWidget.movieData !=movieData;
+  }
+
+  static VideoListItemInheritedWidget? of(BuildContext context)
+  {
+    return context.dependOnInheritedWidgetOfExactType<VideoListItemInheritedWidget>();
+  }
+}
 
 class VideoListItem extends StatelessWidget {
+
   const VideoListItem({Key? key, required this.index}) : super(key: key);
   final int index;
   @override
   Widget build(BuildContext context) {
+    final posterPath=VideoListItemInheritedWidget.of(context)?.movieData.posterPath;
     return Stack(
       children: [
         Container(
@@ -33,22 +57,22 @@ class VideoListItem extends StatelessWidget {
                 //right
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
+                  children:  [
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
+                      padding:const  EdgeInsets.symmetric(vertical: 10),
                       child: CircleAvatar(
                         radius: 30,
-                        backgroundImage: NetworkImage("https://www.themoviedb.org/t/p/w600_and_h900_bestv2/sv1xJUazXeYqALzczSZ3O6nkH75.jpg"),
+                        backgroundImage: posterPath==null?null: NetworkImage("$kImageAppendUrl$posterPath"),
                       ),
                     ),
-                    VideoActionsWidget(
+                    const VideoActionsWidget(
                         title: 'LOL', icon: Icons.emoji_emotions),
-                    VideoActionsWidget(title: 'My List', icon: Icons.add),
-                    VideoActionsWidget(
+                    const VideoActionsWidget(title: 'My List', icon: Icons.add),
+                    const VideoActionsWidget(
                       title: 'Share',
                       icon: Icons.telegram_outlined,
                     ),
-                    VideoActionsWidget(title: 'Play', icon: Icons.play_arrow),
+                   const  VideoActionsWidget(title: 'Play', icon: Icons.play_arrow),
                   ],
                 )
               ],
@@ -91,3 +115,4 @@ class VideoActionsWidget extends StatelessWidget {
     );
   }
 }
+
