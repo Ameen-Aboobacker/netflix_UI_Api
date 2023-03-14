@@ -19,32 +19,44 @@ mixin _$FastLaughEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initialize,
+    required TResult Function(int id) likeVideos,
+    required TResult Function(int id) unlikeVideos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initialize,
+    TResult? Function(int id)? likeVideos,
+    TResult? Function(int id)? unlikeVideos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initialize,
+    TResult Function(int id)? likeVideos,
+    TResult Function(int id)? unlikeVideos,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initialize value) initialize,
+    required TResult Function(LikeVideos value) likeVideos,
+    required TResult Function(UnlikeVideos value) unlikeVideos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Initialize value)? initialize,
+    TResult? Function(LikeVideos value)? likeVideos,
+    TResult? Function(UnlikeVideos value)? unlikeVideos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initialize value)? initialize,
+    TResult Function(LikeVideos value)? likeVideos,
+    TResult Function(UnlikeVideos value)? unlikeVideos,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,6 +119,8 @@ class _$Initialize implements Initialize {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initialize,
+    required TResult Function(int id) likeVideos,
+    required TResult Function(int id) unlikeVideos,
   }) {
     return initialize();
   }
@@ -115,6 +129,8 @@ class _$Initialize implements Initialize {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initialize,
+    TResult? Function(int id)? likeVideos,
+    TResult? Function(int id)? unlikeVideos,
   }) {
     return initialize?.call();
   }
@@ -123,6 +139,8 @@ class _$Initialize implements Initialize {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initialize,
+    TResult Function(int id)? likeVideos,
+    TResult Function(int id)? unlikeVideos,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -135,6 +153,8 @@ class _$Initialize implements Initialize {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initialize value) initialize,
+    required TResult Function(LikeVideos value) likeVideos,
+    required TResult Function(UnlikeVideos value) unlikeVideos,
   }) {
     return initialize(this);
   }
@@ -143,6 +163,8 @@ class _$Initialize implements Initialize {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Initialize value)? initialize,
+    TResult? Function(LikeVideos value)? likeVideos,
+    TResult? Function(UnlikeVideos value)? unlikeVideos,
   }) {
     return initialize?.call(this);
   }
@@ -151,6 +173,8 @@ class _$Initialize implements Initialize {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initialize value)? initialize,
+    TResult Function(LikeVideos value)? likeVideos,
+    TResult Function(UnlikeVideos value)? unlikeVideos,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -162,6 +186,284 @@ class _$Initialize implements Initialize {
 
 abstract class Initialize implements FastLaughEvent {
   const factory Initialize() = _$Initialize;
+}
+
+/// @nodoc
+abstract class _$$LikeVideosCopyWith<$Res> {
+  factory _$$LikeVideosCopyWith(
+          _$LikeVideos value, $Res Function(_$LikeVideos) then) =
+      __$$LikeVideosCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$LikeVideosCopyWithImpl<$Res>
+    extends _$FastLaughEventCopyWithImpl<$Res, _$LikeVideos>
+    implements _$$LikeVideosCopyWith<$Res> {
+  __$$LikeVideosCopyWithImpl(
+      _$LikeVideos _value, $Res Function(_$LikeVideos) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$LikeVideos(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LikeVideos implements LikeVideos {
+  const _$LikeVideos({required this.id});
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'FastLaughEvent.likeVideos(id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LikeVideos &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LikeVideosCopyWith<_$LikeVideos> get copyWith =>
+      __$$LikeVideosCopyWithImpl<_$LikeVideos>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialize,
+    required TResult Function(int id) likeVideos,
+    required TResult Function(int id) unlikeVideos,
+  }) {
+    return likeVideos(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initialize,
+    TResult? Function(int id)? likeVideos,
+    TResult? Function(int id)? unlikeVideos,
+  }) {
+    return likeVideos?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialize,
+    TResult Function(int id)? likeVideos,
+    TResult Function(int id)? unlikeVideos,
+    required TResult orElse(),
+  }) {
+    if (likeVideos != null) {
+      return likeVideos(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initialize value) initialize,
+    required TResult Function(LikeVideos value) likeVideos,
+    required TResult Function(UnlikeVideos value) unlikeVideos,
+  }) {
+    return likeVideos(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Initialize value)? initialize,
+    TResult? Function(LikeVideos value)? likeVideos,
+    TResult? Function(UnlikeVideos value)? unlikeVideos,
+  }) {
+    return likeVideos?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initialize value)? initialize,
+    TResult Function(LikeVideos value)? likeVideos,
+    TResult Function(UnlikeVideos value)? unlikeVideos,
+    required TResult orElse(),
+  }) {
+    if (likeVideos != null) {
+      return likeVideos(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LikeVideos implements FastLaughEvent {
+  const factory LikeVideos({required final int id}) = _$LikeVideos;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$LikeVideosCopyWith<_$LikeVideos> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UnlikeVideosCopyWith<$Res> {
+  factory _$$UnlikeVideosCopyWith(
+          _$UnlikeVideos value, $Res Function(_$UnlikeVideos) then) =
+      __$$UnlikeVideosCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$UnlikeVideosCopyWithImpl<$Res>
+    extends _$FastLaughEventCopyWithImpl<$Res, _$UnlikeVideos>
+    implements _$$UnlikeVideosCopyWith<$Res> {
+  __$$UnlikeVideosCopyWithImpl(
+      _$UnlikeVideos _value, $Res Function(_$UnlikeVideos) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$UnlikeVideos(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UnlikeVideos implements UnlikeVideos {
+  const _$UnlikeVideos({required this.id});
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'FastLaughEvent.unlikeVideos(id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UnlikeVideos &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UnlikeVideosCopyWith<_$UnlikeVideos> get copyWith =>
+      __$$UnlikeVideosCopyWithImpl<_$UnlikeVideos>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialize,
+    required TResult Function(int id) likeVideos,
+    required TResult Function(int id) unlikeVideos,
+  }) {
+    return unlikeVideos(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initialize,
+    TResult? Function(int id)? likeVideos,
+    TResult? Function(int id)? unlikeVideos,
+  }) {
+    return unlikeVideos?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialize,
+    TResult Function(int id)? likeVideos,
+    TResult Function(int id)? unlikeVideos,
+    required TResult orElse(),
+  }) {
+    if (unlikeVideos != null) {
+      return unlikeVideos(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initialize value) initialize,
+    required TResult Function(LikeVideos value) likeVideos,
+    required TResult Function(UnlikeVideos value) unlikeVideos,
+  }) {
+    return unlikeVideos(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Initialize value)? initialize,
+    TResult? Function(LikeVideos value)? likeVideos,
+    TResult? Function(UnlikeVideos value)? unlikeVideos,
+  }) {
+    return unlikeVideos?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initialize value)? initialize,
+    TResult Function(LikeVideos value)? likeVideos,
+    TResult Function(UnlikeVideos value)? unlikeVideos,
+    required TResult orElse(),
+  }) {
+    if (unlikeVideos != null) {
+      return unlikeVideos(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UnlikeVideos implements FastLaughEvent {
+  const factory UnlikeVideos({required final int id}) = _$UnlikeVideos;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$UnlikeVideosCopyWith<_$UnlikeVideos> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

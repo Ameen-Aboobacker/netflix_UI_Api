@@ -34,6 +34,7 @@ class ScreenNewAndHot extends StatelessWidget {
               kwidth,
             ],
             bottom: TabBar(
+              isScrollable:true ,
               labelColor: kblack,
               unselectedLabelColor: kwhite,
               labelStyle: kTabTitleText,

@@ -17,7 +17,7 @@ const kMainImage =
 TextStyle kHomeTitleText =
     const TextStyle(fontSize: 14, fontWeight: FontWeight.bold);
 TextStyle kTabTitleText =
-    const TextStyle(fontSize: 14, fontWeight: FontWeight.bold);
+    const TextStyle(fontSize: 17, fontWeight: FontWeight.bold);
 
 const kComingSoonImage =
     'https://www.themoviedb.org/t/p/w355_and_h200_multi_faces/1DBDwevWS8OhiT3wqqlW7KGPd6m.jpg';

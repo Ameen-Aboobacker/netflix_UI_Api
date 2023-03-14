@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:netflix/domain/downloads/i_downloads_repo.dart';
@@ -9,12 +10,14 @@ part 'fast_laugh_state.dart';
 part 'fast_laugh_bloc.freezed.dart';
 
 final videoUrls = [
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
 ];
+
+ValueNotifier<Set<int>> likedVideosNotifier=ValueNotifier({});
 
 @injectable
 class FastLaughBloc extends Bloc<FastLaughEvent, FastLaughState> {
@@ -31,7 +34,7 @@ class FastLaughBloc extends Bloc<FastLaughEvent, FastLaughState> {
       );
 
       final result = await downloadService.getDownloadsImage();
-      final _state = result.fold(
+      final resultState = result.fold(
         (l) {
           return const FastLaughState(
             videosList: [],
@@ -45,7 +48,16 @@ class FastLaughBloc extends Bloc<FastLaughEvent, FastLaughState> {
           isError: false,
         ),
       );
-      emit(_state);
+      emit(resultState);
+    });
+    on<LikeVideos>((event, emit) async {
+      likedVideosNotifier.value.add(event.id);
+      likedVideosNotifier.notifyListeners();
+    });
+
+    on<UnlikeVideos>((event, emit) async {
+      likedVideosNotifier.value.remove(event.id);
+      likedVideosNotifier.notifyListeners();
     });
   }
 }

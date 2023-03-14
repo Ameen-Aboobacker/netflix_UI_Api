@@ -61,9 +61,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       );
     });
     on<SearchMovie>((event, emit) async {
-      final _result =
+      final result =
           await _searchService.searchMovies(movieQuery: event.movieQuery);
-      final _resultState = _result.fold(
+      final resultState = result.fold(
         (MainFailure f) {
           return const SearchState(
             searchResultList: [],
@@ -81,7 +81,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
             );
         },
       );
-      emit(_resultState);
+      emit(resultState);
     });
   }
 }
