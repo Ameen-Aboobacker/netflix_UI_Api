@@ -40,80 +40,89 @@ class Section2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<DownloadsBloc>(context)
-        .add(const DownloadsEvent.getDownloadsImage());
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      BlocProvider.of<DownloadsBloc>(context)
+          .add(const DownloadsEvent.getDownloadsImage());
+    });
     final Size size = MediaQuery.of(context).size;
-    return Column(
-      children: [
-        const Text(
-          'Introducing Downloads for You',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: kwhite,
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
+    return RefreshIndicator(
+          onRefresh: () async {
+            BlocProvider.of<DownloadsBloc>(context)
+                .add(const DownloadsEvent.getDownloadsImage());
+          },
+      child: Column(
+        children: [
+          const Text(
+            'Introducing Downloads for You',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: kwhite,
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-        kHeight,
-        const Text(
-          "We will download a personilised selection of\nmovies and shows for you, so there's\nalways something to watch on your\n device.",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.grey,
-            fontSize: 16,
+          kHeight,
+          const Text(
+            "We will download a personilised selection of\nmovies and shows for you, so there's\nalways something to watch on your\n device.",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.grey,
+              fontSize: 16,
+            ),
           ),
-        ),
-        BlocBuilder<DownloadsBloc, DownloadsState>(
-          builder: (context, state) {
-            return SizedBox(
-                width: size.width,
-                height: size.width,
-                child: state.isLoading
-                    ? const Center(child: CircularProgressIndicator())
-                    : Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.grey.withOpacity(0.6),
-                            radius: size.width * 0.37,
-                          ),
-                          DownloadsImageWidget(
-                            size: Size(
-                              size.width * 0.35,
-                              size.width * 0.55,
+          BlocBuilder<DownloadsBloc, DownloadsState>(
+            builder: (context, state) {
+              return SizedBox(
+                  width: size.width,
+                  height: size.width,
+                  child: state.isLoading
+                      ? const Center(child: CircularProgressIndicator())
+                      : Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.grey.withOpacity(0.6),
+                              radius: size.width * 0.37,
                             ),
-                            imagelist:
-                                '$kImageAppendUrl${state.downloads[1].posterPath}',
-                            margin: const EdgeInsets.only(
-                              left: 170,
-                              top: 30,
-                            ),
-                            angle: 20,
-                          ),
-                          DownloadsImageWidget(
-                              size: Size(size.width * 0.35, size.width * 0.55),
+                            DownloadsImageWidget(
+                              size: Size(
+                                size.width * 0.35,
+                                size.width * 0.55,
+                              ),
                               imagelist:
-                                  '$kImageAppendUrl${state.downloads[2].posterPath}',
+                                  '$kImageAppendUrl${state.downloads[1].posterPath}',
                               margin: const EdgeInsets.only(
-                                right: 170,
+                                left: 170,
                                 top: 30,
                               ),
-                              angle: -20),
-                          DownloadsImageWidget(
-                            size: Size(size.width * 0.4, size.width * 0.6),
-                            imagelist:
-                                '$kImageAppendUrl${state.downloads[0].posterPath}',
-                            margin: const EdgeInsets.only(
-                              bottom: 10,
-                              top: 20,
+                              angle: 20,
                             ),
-                            radius: 10,
-                          ),
-                        ],
-                      ));
-          },
-        ),
-      ],
+                            DownloadsImageWidget(
+                                size:
+                                    Size(size.width * 0.35, size.width * 0.55),
+                                imagelist:
+                                    '$kImageAppendUrl${state.downloads[2].posterPath}',
+                                margin: const EdgeInsets.only(
+                                  right: 170,
+                                  top: 30,
+                                ),
+                                angle: -20),
+                            DownloadsImageWidget(
+                              size: Size(size.width * 0.4, size.width * 0.6),
+                              imagelist:
+                                  '$kImageAppendUrl${state.downloads[0].posterPath}',
+                              margin: const EdgeInsets.only(
+                                bottom: 10,
+                                top: 20,
+                              ),
+                              radius: 10,
+                            ),
+                          ],
+                        ));
+            },
+          ),
+        ],
+      ),
     );
   }
 }

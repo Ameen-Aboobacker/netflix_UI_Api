@@ -5,8 +5,6 @@ import 'package:netflix/core/constants.dart';
 import 'package:netflix/core/strings.dart';
 import 'package:netflix/presentation/search/widgets/title.dart';
 
-
-
 class SearchResult extends StatelessWidget {
   const SearchResult({Key? key}) : super(key: key);
 
@@ -17,21 +15,20 @@ class SearchResult extends StatelessWidget {
       children: [
         const SearchTextTitle(title: 'Movies & TV'),
         kHeight,
-        Expanded(
-            child: BlocBuilder<SearchBloc,SearchState>(
-              builder: (context,state) {
-                return GridView.count(
-          shrinkWrap: true,
-          crossAxisCount: 3,
-          crossAxisSpacing: 8,
-          mainAxisSpacing: 8,
-          childAspectRatio: 1.2 / 1.7,
-          children: List.generate(state.searchResultList.length, (index) {
-            final movie=state.searchResultList[index]; 
-            return MainCard(imageUrl:"$kImageAppendUrl${movie.posterPath}" );}),
-        );
-              }
-            ))
+        Expanded(child:
+            BlocBuilder<SearchBloc, SearchState>(builder: (context, state) {
+          return GridView.count(
+            shrinkWrap: true,
+            crossAxisCount: 3,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8,
+            childAspectRatio: 1.2 / 1.7,
+            children: List.generate(state.searchResultList.length, (index) {
+              final movie = state.searchResultList[index];
+              return MainCard(imageUrl: "$kImageAppendUrl${movie.posterPath}");
+            }),
+          );
+        }))
       ],
     );
   }
@@ -39,7 +36,7 @@ class SearchResult extends StatelessWidget {
 
 class MainCard extends StatelessWidget {
   const MainCard({Key? key, required this.imageUrl}) : super(key: key);
-   final String imageUrl;
+  final String imageUrl;
   @override
   Widget build(BuildContext context) {
     return Container(

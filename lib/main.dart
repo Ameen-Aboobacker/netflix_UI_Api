@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflix/application/Search/search_bloc.dart';
 import 'package:netflix/application/downloads/downloads_bloc.dart';
 import 'package:netflix/application/fast_laugh/fast_laugh_bloc.dart';
+import 'package:netflix/application/hot_and_new/hot_and_new_bloc.dart';
 import 'package:netflix/core/colors/colors.dart';
 import 'package:netflix/domain/core/di/injectable.dart';
 import 'package:netflix/presentation/main_page/screen_main_page.dart';
@@ -21,8 +22,9 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (ctx) => getIt<DownloadsBloc>()),
-        BlocProvider(create: (ctx)=>getIt<SearchBloc>()),
-        BlocProvider(create:(ctx)=>getIt<FastLaughBloc>())
+        BlocProvider(create: (ctx) => getIt<SearchBloc>()),
+        BlocProvider(create: (ctx) => getIt<FastLaughBloc>()),
+        BlocProvider(create: (ctx) => getIt<HotAndNewBloc>()),
       ],
       child: MaterialApp(
           title: 'Flutter Demo',

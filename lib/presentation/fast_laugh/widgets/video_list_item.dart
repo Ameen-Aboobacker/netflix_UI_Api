@@ -86,9 +86,10 @@ class VideoListItem extends StatelessWidget {
                                 likedVideosNotifier.value.remove(ind);
                                 likedVideosNotifier.notifyListeners();
                               },
-                              child: const VideoActionsWidget(
+                              child: VideoActionsWidget(
                                 title: 'LOL',
-                                icon: Icons.favorite,
+                                icon: Icons.emoji_emotions,
+                                color: Colors.yellow.shade600,
                               ),
                             );
                           } else {
@@ -143,9 +144,11 @@ class VideoActionsWidget extends StatelessWidget {
     Key? key,
     required this.title,
     required this.icon,
+    this.color = kButtonColorwhite,
   }) : super(key: key);
   final String title;
   final IconData icon;
+  final Color color;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -158,12 +161,12 @@ class VideoActionsWidget extends StatelessWidget {
           Icon(
             icon,
             size: 30,
-            color: kwhite,
+            color: color,
           ),
           Text(
             title,
-            style: const TextStyle(
-              color: kwhite,
+            style: TextStyle(
+              color: color,
               fontSize: 16,
             ),
           ),

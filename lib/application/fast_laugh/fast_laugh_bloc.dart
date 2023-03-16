@@ -17,7 +17,7 @@ final videoUrls = [
   "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
 ];
 
-ValueNotifier<Set<int>> likedVideosNotifier=ValueNotifier({});
+ValueNotifier<Set<int>> likedVideosNotifier = ValueNotifier({});
 
 @injectable
 class FastLaughBloc extends Bloc<FastLaughEvent, FastLaughState> {

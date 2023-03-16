@@ -74,11 +74,11 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         },
         (SearchResponse r) {
           return SearchState(
-              searchResultList: r.results,
-              idleList: [],
-              isLoading: false,
-              isError: false,
-            );
+            searchResultList: r.results,
+            idleList: [],
+            isLoading: false,
+            isError: false,
+          );
         },
       );
       emit(resultState);

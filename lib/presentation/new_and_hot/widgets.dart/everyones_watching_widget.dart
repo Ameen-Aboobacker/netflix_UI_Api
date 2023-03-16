@@ -5,8 +5,15 @@ import 'package:netflix/presentation/home/widgets/custom_button_widget.dart';
 import 'package:netflix/presentation/widgets/video_widget.dart';
 
 class EveryonesWatchingWidget extends StatelessWidget {
+  final String posterPath;
+  final String movieName;
+  final String description;
+
   const EveryonesWatchingWidget({
     super.key,
+    required this.posterPath,
+    required this.movieName,
+    required this.description,
   });
 
   @override
@@ -15,22 +22,22 @@ class EveryonesWatchingWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         kHeight,
-        const Text(
-          'TALL GIRL 2',
-          style: TextStyle(
+        Text(
+          movieName,
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
         ),
         kHeight,
-        const Text(
-          'This hit sitcom follows the merry misadventures of six 20-something pals as they navigate the pitfalls of work, life and love in 1990s Manhattan.',
-          style: TextStyle(
+         Text(
+          description,
+          style: const TextStyle(
             color: kGrey,
           ),
         ),
         kHeight50,
-        const VideoWidget(),
+         VideoWidget(image:posterPath),
         kHeight20,
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
