@@ -19,45 +19,45 @@ class ScreenNewAndHot extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(90),
-          child: AppBar(
-            title: const Text(
-              'New and Hot',
-              style: TextStyle(
-                fontSize: 27,
-                fontWeight: FontWeight.bold,
-              ),
+        appBar: AppBar(
+          title: const Text(
+            'New and Hot',
+            style: TextStyle(
+              fontSize: 27,
+              fontWeight: FontWeight.bold,
             ),
-            titleSpacing: 5,
-            actions: [
-              const Icon(
-                Icons.cast,
-                color: kwhite,
+          ),
+          
+          actions: [
+            const Icon(
+              Icons.cast,
+              size: 35,
+              color: kwhite,
+            ),
+            kwidth,
+            /*
+            ),*/
+            Image.network(avatarImage,width: 30,),
+            kwidth,
+          ],
+          bottom: TabBar(
+            isScrollable: true,
+            labelColor: kblack,
+            unselectedLabelColor: kwhite,
+            labelStyle: kTabTitleText,
+            indicator: BoxDecoration(color: kwhite, borderRadius: kradius30),
+            tabs: const [
+              Tab(
+                text: '🍿️ Coming Soon',
               ),
-              kwidth,
-              Container(height: 35, width: 40, color: Colors.blue),
-              kwidth,
+              Tab(
+                text: "👀️ Everyone's Watching",
+              ),
             ],
-            bottom: TabBar(
-              isScrollable: true,
-              labelColor: kblack,
-              unselectedLabelColor: kwhite,
-              labelStyle: kTabTitleText,
-              indicator: BoxDecoration(color: kwhite, borderRadius: kradius30),
-              tabs: const [
-                Tab(
-                  text: '🍿️ Coming Soon',
-                ),
-                Tab(
-                  text: "👀️ Everyone's Watching",
-                ),
-              ],
-            ),
           ),
         ),
         body: const TabBarView(children: [
-           ComingSoonList(
+          ComingSoonList(
             key: Key('coming_soon'),
           ),
           EveryonesWatchingList(),
@@ -65,7 +65,6 @@ class ScreenNewAndHot extends StatelessWidget {
       ),
     );
   }
-
 }
 //coming soon list
 
@@ -78,9 +77,10 @@ class ComingSoonList extends StatelessWidget {
       BlocProvider.of<HotAndNewBloc>(context).add(const LoadDataInComingSoon());
     });
     return RefreshIndicator(
-        onRefresh: () async {
-             BlocProvider.of<HotAndNewBloc>(context).add(const LoadDataInComingSoon());
-          },
+      onRefresh: () async {
+        BlocProvider.of<HotAndNewBloc>(context)
+            .add(const LoadDataInComingSoon());
+      },
       child: BlocBuilder<HotAndNewBloc, HotAndNewState>(
         builder: (context, state) {
           if (state.isLoading) {
@@ -100,7 +100,7 @@ class ComingSoonList extends StatelessWidget {
           } else {
             return ListView.builder(
               shrinkWrap: true,
-              padding: const EdgeInsets.fromLTRB(0,20,10,0),
+              padding: const EdgeInsets.fromLTRB(0, 20, 10, 0),
               itemBuilder: (BuildContext context, index) {
                 final movie = state.comingSoonList[index];
                 log(movie.releaseDate.toString());
@@ -139,11 +139,10 @@ class EveryonesWatchingList extends StatelessWidget {
           .add(const LoadDataInEveryoneIsWatching());
     });
     return RefreshIndicator(
-  
-          onRefresh: () async {
-             BlocProvider.of<HotAndNewBloc>(context)
-          .add(const LoadDataInEveryoneIsWatching());
-          },
+      onRefresh: () async {
+        BlocProvider.of<HotAndNewBloc>(context)
+            .add(const LoadDataInEveryoneIsWatching());
+      },
       child: BlocBuilder<HotAndNewBloc, HotAndNewState>(
         builder: (context, state) {
           if (state.isLoading) {
@@ -162,22 +161,22 @@ class EveryonesWatchingList extends StatelessWidget {
             );
           } else {
             return ListView.separated(
-
               shrinkWrap: true,
               padding: const EdgeInsets.all(20),
               itemBuilder: (BuildContext context, index) {
-                 final tv= state.everyOneIsWatchingList[index];
-                 final String? path;
-                 if(tv.backdropPath==null){
-                   path=tv.posterPath;
-                 }else{
-                  path=tv.backdropPath;
-                 }
-                 return  EveryonesWatchingWidget(
-                posterPath:'$kImageAppendUrl$path' ,
-                movieName:tv.originalName??'No title available',
-                description: tv.overview??'description not available',
-              );},
+                final tv = state.everyOneIsWatchingList[index];
+                final String? path;
+                if (tv.backdropPath == null) {
+                  path = tv.posterPath;
+                } else {
+                  path = tv.backdropPath;
+                }
+                return EveryonesWatchingWidget(
+                  posterPath: '$kImageAppendUrl$path',
+                  movieName: tv.originalName ?? 'No title available',
+                  description: tv.overview ?? 'description not available',
+                );
+              },
               itemCount: state.everyOneIsWatchingList.length,
               separatorBuilder: (BuildContext context, int index) =>
                   const SizedBox(),

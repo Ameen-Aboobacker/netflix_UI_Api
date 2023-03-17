@@ -25,7 +25,7 @@ class ScreenFastLaugh extends StatelessWidget {
               );
             } else if (state.videosList.isEmpty) {
               return const Center(
-                child: Text('ERROR'),
+                child: Text('List is empty'),
               );
             } else {
               return PageView(

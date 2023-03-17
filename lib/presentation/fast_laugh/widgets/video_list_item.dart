@@ -40,7 +40,7 @@ class VideoListItem extends StatelessWidget {
     final videoLink = videoUrls[index % videoUrls.length];
     return Stack(
       children: [
-        FastLaughVideoPlayer(videoUrl: videoLink, onStateChanged: (bool) {}),
+        FastLaughVideoPlayer(videoUrl: videoLink, onStateChanged: (boolean) {}),
         Align(
           alignment: Alignment.bottomCenter,
           child: Padding(

@@ -21,3 +21,4 @@ TextStyle kTabTitleText =
 
 const kComingSoonImage =
     'https://www.themoviedb.org/t/p/w355_and_h200_multi_faces/1DBDwevWS8OhiT3wqqlW7KGPd6m.jpg';
+  const avatarImage='https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png';  

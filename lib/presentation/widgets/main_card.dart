@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/core/constants.dart';
 
-const imageUrl =
-    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/sv1xJUazXeYqALzczSZ3O6nkH75.jpg";
+
 
 class MainCard extends StatelessWidget {
   const MainCard({
     super.key,
+    required this.imageUrl,
   });
-
+  final String imageUrl;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -18,7 +18,7 @@ class MainCard extends StatelessWidget {
         width: 120,
         decoration: BoxDecoration(
           borderRadius: kradius,
-          image: const DecorationImage(
+          image:  DecorationImage(
             fit: BoxFit.cover,
             image: NetworkImage(
               imageUrl,

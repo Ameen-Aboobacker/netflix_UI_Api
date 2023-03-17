@@ -6,9 +6,9 @@ import '../../widgets/main_title.dart';
 
 class NumberTitleCard extends StatelessWidget {
   const NumberTitleCard({
-    super.key,
+    super.key, required this.tvlist,
   });
-
+  final List<String> tvlist;
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -21,9 +21,10 @@ class NumberTitleCard extends StatelessWidget {
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: List.generate(
-              5,
+              10,
               (index) => NumberCard(
                     index: index,
+                    tvposter:tvlist[index],
                   )),
         ),
       ),
