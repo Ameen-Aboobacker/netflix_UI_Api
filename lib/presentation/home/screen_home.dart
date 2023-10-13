@@ -53,13 +53,13 @@ class ScreenHome extends StatelessWidget {
                      
                           log("past");
                           final pastYear = state.pastYearMovieList.map((m) {
-                            log(m.originalTitle.toString());
+                           
                             return '$kImageAppendUrl${m.posterPath}';
                           }).toList();
                         
                           log("trending");
                           final trending = state.trendingMovieList.map((m) {
-                            log(m.originalTitle.toString());
+                          
                             return '$kImageAppendUrl${m.posterPath}';
                           }).toList();
 
@@ -72,7 +72,8 @@ class ScreenHome extends StatelessWidget {
                               state.southIndianMovieList.map((m) {
                             return '$kImageAppendUrl${m.posterPath}';
                           }).toList();
-                          final background=southIndianMovie.last; 
+                          log(pastYear.toString());
+                         
                           final tvlist =
                               state.tvList.map((t) {
                             return '$kImageAppendUrl${t.posterPath}';
@@ -81,7 +82,7 @@ class ScreenHome extends StatelessWidget {
                           return ListView(
                             children: [
                                BackgroundCard(
-                                image: '$kImageAppendUrl$background',
+                                image: '$kImageAppendUrl${southIndianMovie.first}',
                               ),
                               kHeight,
                               MainTitleCard(
@@ -122,7 +123,7 @@ class ScreenHome extends StatelessWidget {
                               children: [
                                 Row(
                                   children: [
-                                    Image.network(
+                                    /*Image.network(
                                         'https://www.linkpicture.com/q/netflix-logo.png',
                                         width: 70,
                                         height: 70),
@@ -131,7 +132,7 @@ class ScreenHome extends StatelessWidget {
                                       Icons.cast,
                                       color: kwhite,
                                       size: 30,
-                                    ),
+                                    ),*/
                                     kwidth,
                                   Image.network(avatarImage,width: 25,),
                                     kwidth,

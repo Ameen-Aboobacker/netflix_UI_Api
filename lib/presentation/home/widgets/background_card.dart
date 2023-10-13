@@ -4,9 +4,10 @@ import 'package:netflix/presentation/home/widgets/custom_button_widget.dart';
 
 class BackgroundCard extends StatelessWidget {
   const BackgroundCard({
-    super.key, required this.image,
+    super.key, 
+    required this.image,
   });
-  final String image;
+final String image;
   @override
   Widget build(BuildContext context) {
     return Stack(

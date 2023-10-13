@@ -15,11 +15,8 @@ class ScreenSearch extends StatelessWidget {
       BlocProvider.of<SearchBloc>(context).add(const Initialize());
     });
     return RefreshIndicator(
-      onRefresh: () async{
-        
-      BlocProvider.of<SearchBloc>(context).add(const Initialize());
-
-
+      onRefresh: () async {
+        BlocProvider.of<SearchBloc>(context).add(const Initialize());
       },
       child: Scaffold(
           body: SafeArea(
